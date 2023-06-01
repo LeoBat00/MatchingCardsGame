@@ -12,17 +12,22 @@ body {
 .menu{
     height: 100vh;
     margin: 0;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
     flex-direction: column;
     display: flex;
 }
 
+.menu #logo{
+    margin: 30px;
+}
+
+
 
 .screenP1{
     height: 100vh;
     margin: 0;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
     flex-direction: column;
     display: none;    
@@ -38,6 +43,9 @@ h1{
 
 }
 
+h1:hover{
+    cursor: pointer;
+}
 .tiles {
     filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
     margin: 44px auto;
@@ -95,6 +103,15 @@ h1{
     transition: transform 0.2s;
 }
 
+.menu .buttons{
+    display: flex;
+    flex-direction: column;
+}
+
+.menu .buttons button{
+    width: 300px;
+    margin: 15px;
+}
 .buttons button p {
     font-weight: 700;
     line-height: 42px;

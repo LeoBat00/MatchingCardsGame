@@ -143,7 +143,27 @@ function revealAllCards(){
 
 
 function gameStartP1(){
-        
+    var menu = document.querySelector('.menu')
+    var screenP1 = document.querySelector('.screenP1')
+
+    screenP1.style.display = 'flex'
+    menu.style.display = 'none'
+
+    console.log("a")
+    console.log(screenP1)
+    console.log(menu)
 }
 
 
+function voltarMenu(){
+    var menu = document.querySelector('.menu')
+    var screenP1 = document.querySelector('.screenP1')
+
+    screenP1.style.display = 'none'
+    menu.style.display = 'flex'
+
+    console.log("a")
+    console.log(screenP1)
+    console.log(menu)
+
+}

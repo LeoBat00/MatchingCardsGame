@@ -12,12 +12,12 @@
 </head> 
 <body>
     <div class="menu">
-        <h1>Memory Game</h1>
-        <img src="Assets/img/Logo.png" alt="Dois quadrados">
+        <h1 >Memory Game</h1>
+        <img src="Assets/img/Logo.png" alt="Dois quadrados" id="logo">
 
         <div class="buttons">
-            <button onclick="gameStartP1" id="player01"><p>1 PLAYER</p></button>
-            <button onclick="gameStartp2" id="player02"><p>2 PLAYERS</p></button>
+            <button onclick="gameStartP1()" id="player01"><p>1 PLAYER</p></button>
+            <button onclick="gameStartp2()" id="player02"><p>2 PLAYERS</p></button>
         </div>
         <div class="copyright">
             <h3 ><a href="https://github.com/LeoBat00"> © Leonardo Batista </a></h3>
@@ -26,7 +26,7 @@
 
     </div>
     <div class="screenP1" >    
-        <h1>Memory Game</h1>
+        <h1 onclick="voltarMenu()">Memory Game</h1>
         <div class="tiles"></div>
         
         <div class="buttons">
