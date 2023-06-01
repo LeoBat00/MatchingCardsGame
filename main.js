@@ -1,11 +1,13 @@
 
-const tileContainer = document.querySelector(".tiles")
+const tileContainer = document.querySelectorAll(".tiles")
+
+const tileContainerAll = document.querySelectorAll(".tiles")
 const colors = ["aqua", "aquamarine", "crimson", "blue", "dodgerblue", "gold", "greenyellow", "teal"];
 
 const imgs = ["url('Assets/img/IMG1.jpg","url('Assets/img/IMG2.gif","url('Assets/img/IMG3.jpg","url('Assets/img/IMG4.jpg","url('Assets/img/IMG5.jpg",
 "url('Assets/img/IMG6.jpg","url('Assets/img/IMG7.jpg","url('Assets/img/IMG8.jpg"]
 
-
+var currentScreen;
 const colorsPicklist = [...colors, ... colors]
 
 var imgPicklist = [...imgs,...imgs]
@@ -13,7 +15,7 @@ var imgPicklist = [...imgs,...imgs]
 const tileCount = colorsPicklist.length;
 const tileCountImg = imgPicklist.length;
 
-
+console.log(tileContainerAll)
 
 let revealCount = 0;
 let activeTile = null;
@@ -83,16 +85,22 @@ function clicked(color,element){
 return element;
 }
 
-for (let i = 0; i<tileCountImg; i++){
-    const randomIndex = Math.floor(Math.random() * imgPicklist.length);
-    const img = imgPicklist[randomIndex]
-    const tile = buildTile(img);
-    imgPicklist.splice(randomIndex, 1);
 
-    tileContainer.appendChild(tile)
 
-    console.log(img)
-   
+function startGame(quantidadePlayers){
+    for (let i = 0; i<tileCountImg; i++){
+        const randomIndex = Math.floor(Math.random() * imgPicklist.length);
+        const img = imgPicklist[randomIndex]
+        const tile = buildTile(img);
+        imgPicklist.splice(randomIndex, 1);
+    
+        
+        tileContainer[quantidadePlayers-1].appendChild(tile)
+    
+        console.log(img)
+       
+    
+    }
 
 }
 
@@ -113,7 +121,7 @@ function reset(){
         const tile = buildTile(img);
         imgPicklist.splice(randomIndex, 1);
     
-        tileContainer.appendChild(tile)
+        tileContainer[currentScreen-1].appendChild(tile)
     
         console.log(img)
        
@@ -143,6 +151,8 @@ function revealAllCards(){
 
 
 function gameStartP1(){
+    currentScreen = 1
+    startGame(1)
     var menu = document.querySelector('.menu')
     var screenP1 = document.querySelector('.screenP1')
 
@@ -156,14 +166,41 @@ function gameStartP1(){
 
 
 function voltarMenu(){
+    var tiles = document.querySelectorAll(".tiles .tile");
+    for (var i = 0; i < tiles.length; i++) {
+      tiles[i].remove();
+    }
+
+    imgPicklist = [...imgs,...imgs]
+
+    currentScreen = null
+    var screenP2 = document.querySelector('.screenP2')
+
     var menu = document.querySelector('.menu')
     var screenP1 = document.querySelector('.screenP1')
 
     screenP1.style.display = 'none'
+    screenP2.style.display = 'none'
     menu.style.display = 'flex'
 
     console.log("a")
     console.log(screenP1)
+    console.log(menu)
+
+}
+
+function gameStartP2(){
+    currentScreen = 2
+    startGame(2)
+    var menu = document.querySelector('.menu')
+    var screenP2 = document.querySelector('.screenP2')
+    
+
+    screenP2.style.display = 'flex'
+    menu.style.display = 'none'
+
+    console.log("a")
+    console.log(screenP2)
     console.log(menu)
 
 }

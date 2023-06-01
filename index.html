@@ -12,12 +12,12 @@
 </head> 
 <body>
     <div class="menu">
-        <h1 >Memory Game</h1>
+        <h1 id="title">Memory Game</h1>
         <img src="Assets/img/Logo.png" alt="Dois quadrados" id="logo">
 
         <div class="buttons">
             <button onclick="gameStartP1()" id="player01"><p>1 PLAYER</p></button>
-            <button onclick="gameStartp2()" id="player02"><p>2 PLAYERS</p></button>
+            <button onclick="gameStartP2()" id="player02"><p>2 PLAYERS</p></button>
         </div>
         <div class="copyright">
             <h3 ><a href="https://github.com/LeoBat00"> © Leonardo Batista </a></h3>
@@ -25,9 +25,12 @@
 
 
     </div>
-    <div class="screenP1" >    
-        <h1 onclick="voltarMenu()">Memory Game</h1>
-        <div class="tiles"></div>
+    <div class="screenP1" >  
+        <h1 id="title" onclick="voltarMenu()">Memory Game</h1>
+  
+        <div class="tiles">
+            
+        </div>
         
         <div class="buttons">
             <button id="reset" onclick="reset()"><p>RESET</p></button>
@@ -42,7 +45,39 @@
     </div>
 
 
-    <div class="screenP2"></div>
+    <div class="screenP2">
+
+        <h1 id="title" onclick="voltarMenu()">Memory Game</h1>
+        <div class="tiles">
+
+        </div>
+
+        <div class="playersConteiner">
+            <div class="player01">
+                <img src="Assets/img/Player.png" alt="Person vector" id="iconplayer">
+                <h1 id="name">P1</h1>
+                <div class="score">
+                    <p>SCORE</p>
+                    <p>00</p>
+                </div>
+
+
+            </div>
+            <div class="player02">
+                <img src="Assets/img/Player.png" alt="Person vector" id="iconplayer">
+                <h1 id="name">P2</h1>
+                <div class="score">
+                    <p>SCORE</p>
+                    <p>00</p>
+                </div>
+
+
+            </div>
+        </div>
+
+
+
+    </div>
 
 </body>
 </html>
