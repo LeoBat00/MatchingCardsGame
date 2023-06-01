@@ -14,6 +14,7 @@ const tileCount = colorsPicklist.length;
 const tileCountImg = imgPicklist.length;
 
 
+
 let revealCount = 0;
 let activeTile = null;
 let awaitingEndOfMove = false;
@@ -140,5 +141,9 @@ function revealAllCards(){
 
 }
 
+
+function gameStartP1(){
+        
+}
 
 

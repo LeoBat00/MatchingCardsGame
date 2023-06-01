@@ -1,6 +1,4 @@
 body {
-    height: 100vh;
-
     background-color: #77A5DB;
     margin: 0;
     justify-content: center;
@@ -11,14 +9,23 @@ body {
     
 }
 
-.conteiner{
+.menu{
     height: 100vh;
     margin: 0;
     justify-content: center;
     align-items: center;
-    display: flex;
     flex-direction: column;
-    
+    display: flex;
+}
+
+
+.screenP1{
+    height: 100vh;
+    margin: 0;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    display: none;    
 }
 
 h1{
@@ -110,3 +117,62 @@ button:active {
   }
 
 
+  @media (max-width: 1920px){
+    h1{
+        font-size: 60px;
+    }
+    
+    .tiles {
+        grid-template-columns: repeat(4, 100px); 
+        gap: 15px;
+    }
+    
+    .tile {
+        height: 100px;
+    }
+    .buttons button{        
+        width: 212.5px;
+        height: 55px;
+        margin-bottom: 0;
+    }
+
+    .buttons button p {
+        font-size: 19px;
+    }
+
+    a{
+        margin-top: 5px;
+        font-size: 10px;
+    }
+
+}
+
+    @media(max-width: 513px){
+        h1{
+            font-size: 40px;
+            margin-bottom:10px;
+        }
+        
+        .tiles {
+            grid-template-columns: repeat(4, 70px); 
+            gap: 15px;
+        }
+        
+        .tile {
+            height: 70px;
+        }
+        .buttons button{        
+            width: 212.5px;
+            height: 55px;
+            margin-bottom: 0;
+        }
+    
+        .buttons button p {
+            font-size: 19px;
+        }
+    
+        a{
+            margin-top: 5px;
+            font-size: 10px;
+        }
+    }

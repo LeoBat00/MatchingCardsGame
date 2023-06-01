@@ -7,10 +7,25 @@
     <title>Document</title>
     <link rel="stylesheet" href="main.css"> 
     <script src="main.js" defer></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 </head> 
 <body>
-    <div class="conteiner">    
+    <div class="menu">
+        <h1>Memory Game</h1>
+        <img src="Assets/img/Logo.png" alt="Dois quadrados">
+
+        <div class="buttons">
+            <button onclick="gameStartP1" id="player01"><p>1 PLAYER</p></button>
+            <button onclick="gameStartp2" id="player02"><p>2 PLAYERS</p></button>
+        </div>
+        <div class="copyright">
+            <h3 ><a href="https://github.com/LeoBat00"> © Leonardo Batista </a></h3>
+        </div>
+
+
+    </div>
+    <div class="screenP1" >    
         <h1>Memory Game</h1>
         <div class="tiles"></div>
         
@@ -27,6 +42,7 @@
     </div>
 
 
+    <div class="screenP2"></div>
 
 </body>
 </html>
