@@ -6,7 +6,7 @@ const colors = ["aqua", "aquamarine", "crimson", "blue", "dodgerblue", "gold", "
 
 const imgs = ["url('Assets/img/IMG1.jpg","url('Assets/img/IMG2.gif","url('Assets/img/IMG3.jpg","url('Assets/img/IMG4.jpg","url('Assets/img/IMG5.jpg",
 "url('Assets/img/IMG6.jpg","url('Assets/img/IMG7.jpg","url('Assets/img/IMG8.jpg"]
-
+var scores = document.querySelector('#scores')
 var currentScreen;
 const colorsPicklist = [...colors, ... colors]
 
@@ -21,6 +21,41 @@ let revealCount = 0;
 let activeTile = null;
 let awaitingEndOfMove = false;
 
+class Player {
+    constructor(id) {
+      this.id = id;
+      this.score = 0;
+      this.time = 0;
+      this.streak = false;
+    }
+    addPoints(points) {
+        if(this.streak==true){
+            this.score += (points+1)
+            return
+        }
+        this.score += points;
+      
+    }
+
+    removePoints(points){
+        if(this.score>0){
+        this.score -= 1;
+        }
+        return
+    }
+
+    reset(){
+        this.score = 0;
+        this.time = 0;
+        this.streak = false;
+    }
+  
+
+  }
+
+const player1 = new Player('Player01');
+const player2 = new Player('Player02');
+console.log(player1.id)
 function buildTile(color){
     const element = document.createElement("div");
 
@@ -37,8 +72,11 @@ function buildTile(color){
 
 }
 
-
+var player1Time = true;
+var player2Time = false
 function clicked(color,element){
+    console.log("1"+player1Time+ "2" + player2Time)
+
     if(awaitingEndOfMove){
         return
     }
@@ -57,18 +95,26 @@ function clicked(color,element){
     if(colorToMatch === color){
         activeTile = null
         awaitingEndOfMove = false
-        revealCount +=2;
 
+        if(player1Time==true){
+            console.log("1time")
+            points(player1)
+        }else if(player2Time==true){
+            
+            console.log("2time")
+            points(player2)
+        } 
         if(revealCount === tileCount){
             console.log("you win!")
 
         }
-
+        console.log("PLAYER 1: " +player1.score +" PLAYER 2: " + player2.score )
         return
     }
-
+    player1Time = false
+    player2Time = true
     awaitingEndOfMove = true
-
+    console.log(awaitingEndOfMove)
     setTimeout(() =>{
         element.style.background = null
         activeTile.style.background = null
@@ -82,10 +128,15 @@ function clicked(color,element){
     console.log(activeTile)
 
 
+
 return element;
 }
 
-
+function points(player){
+    console.log(player.id)
+    player.score += 2;
+    scores.textContent = player.score
+}
 
 function startGame(quantidadePlayers){
     for (let i = 0; i<tileCountImg; i++){
@@ -162,14 +213,13 @@ function gameStartP1(){
     console.log("a")
     console.log(screenP1)
     console.log(menu)
-}
+} 
 
 
 function voltarMenu(){
     var tiles = document.querySelectorAll(".tiles .tile");
-    for (var i = 0; i < tiles.length; i++) {
-      tiles[i].remove();
-    }
+    tiles.forEach(tile => tile.remove());
+
 
     imgPicklist = [...imgs,...imgs]
 

@@ -1,4 +1,4 @@
-class player{
+export default class player{
     
     player(nome){
         
@@ -8,4 +8,7 @@ class player{
 
     }
 
+    getScore () {
+        return score;
+      }
 }
