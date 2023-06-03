@@ -56,6 +56,8 @@ class Player {
 const player1 = new Player('Player01');
 const player2 = new Player('Player02');
 console.log(player1.id)
+
+
 function buildTile(color){
     const element = document.createElement("div");
 
@@ -72,10 +74,10 @@ function buildTile(color){
 
 }
 
-var player1Time = true;
-var player2Time = false
+var currentPlayer = player1
 function clicked(color,element){
-    console.log("1"+player1Time+ "2" + player2Time)
+
+    focusPlayer(currentPlayer)
 
     if(awaitingEndOfMove){
         return
@@ -85,8 +87,8 @@ function clicked(color,element){
     element.classList.toggle("rotated");
 
     if(!activeTile){
+        console.log("a")
         activeTile = element
-
         return;
     }
 
@@ -96,37 +98,30 @@ function clicked(color,element){
         activeTile = null
         awaitingEndOfMove = false
 
-        if(player1Time==true){
-            console.log("1time")
-            points(player1)
-        }else if(player2Time==true){
-            
-            console.log("2time")
-            points(player2)
-        } 
+        currentPlayer.addPoints(2)
+
+
         if(revealCount === tileCount){
             console.log("you win!")
 
         }
-        console.log("PLAYER 1: " +player1.score +" PLAYER 2: " + player2.score )
         return
     }
-    player1Time = false
-    player2Time = true
+
     awaitingEndOfMove = true
-    console.log(awaitingEndOfMove)
+
     setTimeout(() =>{
         element.style.background = null
         activeTile.style.background = null
         activeTile.classList.remove("rotated")
         element.classList.remove("rotated")
 
+       currentPlayer = currentPlayer === player1 ? player2 : player1;
+
+
         awaitingEndOfMove = false
         activeTile = null
     },1000);
-
-    console.log(activeTile)
-
 
 
 return element;
@@ -252,5 +247,10 @@ function gameStartP2(){
     console.log("a")
     console.log(screenP2)
     console.log(menu)
+
+}
+
+function focusPlayer(currentPlayer){
+    
 
 }
