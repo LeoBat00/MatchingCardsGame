@@ -58,7 +58,7 @@ const player2 = new Player('Player02');
 console.log(player1.id)
 
 
-function buildTile(color){
+function buildTile(color,tamanhoTile){
     const element = document.createElement("div");
 
     element.classList.add("tile");
@@ -133,7 +133,31 @@ function points(player){
     scores.textContent = player.score
 }
 
-function startGame(quantidadePlayers){
+
+
+function createPlayer(quantidadePlayers) {
+    var players = [];
+  
+    for (var i = 0; i < quantidadePlayers; i++) {
+      var player = new Player("Player" + (i+1))
+  
+      players.push(player);
+    }
+  
+    return players;
+  }  
+    
+
+console.log(createPlayer(4))
+
+
+function startGame(quantidadePlayers,quantidadeTiles){
+
+
+    var tilesElement = document.querySelector('.tiles');
+    tilesElement.style.gridTemplateColumns = `repeat(${4}, 130px)`;
+
+
     for (let i = 0; i<tileCountImg; i++){
         const randomIndex = Math.floor(Math.random() * imgPicklist.length);
         const img = imgPicklist[randomIndex]
