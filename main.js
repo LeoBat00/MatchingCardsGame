@@ -2,7 +2,7 @@
 const tileContainer = document.querySelectorAll(".tiles")
 
 const tileContainerAll = document.querySelectorAll(".tiles")
-const colors = ["aqua", "aquamarine", "crimson", "blue", "dodgerblue", "gold", "greenyellow", "teal"];
+const colors = ["#B1E3FF", "#FFA9A9", "#8AFF77", "#DBFF00", "dodgerblue", "gold", "greenyellow", "teal"];
 
 const imgs = ["url('Assets/img/IMG1.jpg","url('Assets/img/IMG2.gif","url('Assets/img/IMG3.jpg","url('Assets/img/IMG4.jpg","url('Assets/img/IMG5.jpg",
 "url('Assets/img/IMG6.jpg","url('Assets/img/IMG7.jpg","url('Assets/img/IMG8.jpg"]
@@ -58,12 +58,13 @@ class Player {
 
   }
 
-const player1 = new Player('Player01');
-const player2 = new Player('Player02');
-console.log(player1.id)
 
 
-function buildTile(color,tamanhoTile){
+function buildTile(color,tamanhoTiles){
+
+
+    const tilesElement = document.querySelector('.tiles');
+    tilesElement.style.gridTemplateColumns = `repeat(${tamanhoTiles}, 130px)`;
     const element = document.createElement("div");
 
     element.classList.add("tile");
@@ -79,8 +80,14 @@ function buildTile(color,tamanhoTile){
 
 }
 
-var currentPlayer = player1
+var indice = 0
+
+
 function clicked(color,element){
+    
+    currentPlayer = players[indice]
+    console.log(currentPlayer)
+    //p1 
 
     focusPlayer(currentPlayer)
 
@@ -120,8 +127,12 @@ function clicked(color,element){
         activeTile.style.background = null
         activeTile.classList.remove("rotated")
         element.classList.remove("rotated")
-
-       currentPlayer = currentPlayer === player1 ? player2 : player1;
+        indice++
+        console.log(currentPlayer)
+        if(indice==players.length){
+            indice = 0
+        }
+        
 
 
         awaitingEndOfMove = false
@@ -141,14 +152,14 @@ function points(player){
 const colorse = ["aqua", "aquamarine", "crimson", "blue", "dodgerblue", "gold", "greenyellow", "teal"];
 
 var players = []
-var buttons = document.querySelectorAll('.playersOptions button');
+var buttonsPlayer = document.querySelectorAll('.playersOptions button');
+var buttonsTiles = document.querySelectorAll('.tilesOptions button')
 
-
-buttons.forEach((button) => {
+buttonsPlayer.forEach((button) => {
 
     button.addEventListener('click', ()=> {
-        
-        buttons.forEach((button) => {
+
+        buttonsPlayer.forEach((button) => {
             button.classList.remove('pressed');
         });
 
@@ -156,11 +167,29 @@ buttons.forEach((button) => {
         button.classList.add('pressed')
         var quantidadePlayers = parseInt(button.getAttribute('data-players'));
         players = createPlayer(quantidadePlayers);
+        
         console.log(players)
         
-
+        reset()
+        tamanhoTiles = tileMode
     });
 });
+
+var tileMode = 4
+buttonsTiles.forEach((button) =>{
+    
+    button.addEventListener('click', () =>{
+        
+        reset()    
+        buttonsTiles.forEach((button) =>{
+            button.classList.remove('pressed')
+        })
+
+        button.classList.add('pressed')
+        tileMode = parseInt(button.getAttribute('data-tilesoptions'))
+        console.log("Tile: "+ tileMode)
+    })
+})
 
 
 console.log(players)
@@ -178,20 +207,17 @@ function createPlayer(quantidadePlayers) {
   }  
     
 
-
+tamanhoTiles = 0
 
 function startGame(quantidadePlayers,quantidadeTiles){
 
 
-    var tilesElement = document.querySelector('.tiles');
-    tilesElement.style.gridTemplateColumns = `repeat(${4}, 130px)`;
-
-
+    tamanhoTiles = tileMode
     for (let i = 0; i<tileCountImg; i++){
         const randomIndex = Math.floor(Math.random() * imgPicklist.length);
         const img = imgPicklist[randomIndex]
-        const tile = buildTile(img);
-        imgPicklist.splice(randomIndex, 1);
+        const tile = buildTile(img,tamanhoTiles);
+        imgPicklist.splice(randomIndex);
     
         
         tileContainer[quantidadePlayers-1].appendChild(tile)
@@ -217,7 +243,8 @@ function reset(){
     for (let i = 0; i<tileCountImg; i++){
         const randomIndex = Math.floor(Math.random() * imgPicklist.length);
         const img = imgPicklist[randomIndex]
-        const tile = buildTile(img);
+        const tile = buildTile(img,tamanhoTiles);
+        console.log(tamanhoTiles)
         imgPicklist.splice(randomIndex, 1);
     
         tileContainer[currentScreen-1].appendChild(tile)
