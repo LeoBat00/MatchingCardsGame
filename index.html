@@ -11,13 +11,27 @@
 
 </head> 
 <body>
+
+    <div class="options">
+        <div class="tilesOptions">
+            <button>Easy</button>
+            <button>Medium</button>
+            <button>Hard</button>
+        </div>
+        <div class="playersOptions">    
+            <button data-players="2" >Players   2</button>
+            <button data-players="3" >Players   3</button>
+            <button data-players="4" >Players   4</button>
+        </div>        
+    </div>
+
     <div class="menu">
         <h1 id="title">Memory Game</h1>
         <img src="Assets/img/Logo.png" alt="Dois quadrados" id="logo">
 
         <div class="buttons">
-            <button onclick="gameStartP1()" id="player01"><p>1 PLAYER</p></button>
-            <button onclick="gameStartP2()" id="player02"><p>2 PLAYERS</p></button>
+            <button onclick="gameStartP1()" id="player01"><p>Solo Mode</p></button>
+            <button onclick="gameStartP2()" id="player02"><p>Multiplayer</p></button>
         </div>
         <div class="copyright">
             <h3 ><a href="https://github.com/LeoBat00"> © Leonardo Batista </a></h3>
@@ -77,6 +91,19 @@
 
 
 
+    </div>
+
+    <div class="playersCount">
+        <div class="playerCard">
+            <h1 class="NomePlayer" id="player1">P1</h1>
+            <div class="card">
+                <img src="Assets/img/Player.png">
+            </div>
+            <div class="score">
+                <p class="scoreLabel" id="p1scrLabel">Score</p>
+                <p class="score" id="p1src">00</p>
+            </div>
+        </div>
     </div>
 
 </body>

@@ -27,6 +27,11 @@ class Player {
       this.score = 0;
       this.time = 0;
       this.streak = false;
+      this.color = 'white'
+    }
+
+    addColor(color){
+        this.color = color
     }
     addPoints(points) {
         if(this.streak==true){
@@ -133,6 +138,32 @@ function points(player){
     scores.textContent = player.score
 }
 
+const colorse = ["aqua", "aquamarine", "crimson", "blue", "dodgerblue", "gold", "greenyellow", "teal"];
+
+var players = []
+var buttons = document.querySelectorAll('.playersOptions button');
+
+
+buttons.forEach((button) => {
+
+    button.addEventListener('click', ()=> {
+        
+        buttons.forEach((button) => {
+            button.classList.remove('pressed');
+        });
+
+
+        button.classList.add('pressed')
+        var quantidadePlayers = parseInt(button.getAttribute('data-players'));
+        players = createPlayer(quantidadePlayers);
+        console.log(players)
+        
+
+    });
+});
+
+
+console.log(players)
 
 
 function createPlayer(quantidadePlayers) {
@@ -140,15 +171,13 @@ function createPlayer(quantidadePlayers) {
   
     for (var i = 0; i < quantidadePlayers; i++) {
       var player = new Player("Player" + (i+1))
-  
+      player.color = colors[i]
       players.push(player);
     }
-  
     return players;
   }  
     
 
-console.log(createPlayer(4))
 
 
 function startGame(quantidadePlayers,quantidadeTiles){
